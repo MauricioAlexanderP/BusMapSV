@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "693700987504",
+    "project_id": "busmap-dd11f",
+    "storage_bucket": "busmap-dd11f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:693700987504:android:69fdf16b0906a42dd282b5",
+        "android_client_info": {
+          "package_name": "com.BusMap.busmapsv"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-BHBmKUtbluAfYjR7T5ogOHT5_Z3tqqI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
