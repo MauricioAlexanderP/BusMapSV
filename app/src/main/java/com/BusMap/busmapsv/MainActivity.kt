@@ -18,6 +18,17 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        // Verificar el estado de inicio de sesión en SharedPreferences
+        val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+        val isLoggedIn = sharedPreferences.getBoolean("is_logged_in", false)
+
+        if (isLoggedIn) {
+            // El usuario ya ha iniciado sesión anteriormente, ir directamente a la pantalla principal
+            goToActivityHome()
+        } else {
+            // Mostrar la pantalla de inicio de sesión o registro
+        }
         val btnIngresar = findViewById<Button>(R.id.btnIngresar)
         btnIngresar.setOnClickListener {
             goToActivityLogin()
@@ -35,6 +46,10 @@ class MainActivity : AppCompatActivity() {
 
     fun goToActivityLogin() {
         val intent = Intent(this, Activity_login::class.java)
+        startActivity(intent)
+    }
+    private fun goToActivityHome() {
+        val intent = Intent(this, Activity_home::class.java)
         startActivity(intent)
     }
 }

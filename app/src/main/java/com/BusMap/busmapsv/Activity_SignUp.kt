@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -102,6 +103,7 @@ class Activity_SignUp : AppCompatActivity() {
     private fun goToActivityHome() {
         val intent = Intent(this, Activity_home::class.java)
         startActivity(intent)
+        finish()
     }
 
     private fun addUsers() {
@@ -127,7 +129,7 @@ class Activity_SignUp : AppCompatActivity() {
                             val userData = hashMapOf(
                                 "name" to name,
                                 "email" to email,
-                                "password" to password // Puedes considerar no almacenar la contraseña en texto plano
+                                "password" to password // Considera no almacenar la contraseña en texto plano
                             )
 
                             // Guardar la información del usuario en la colección "users"
@@ -135,8 +137,14 @@ class Activity_SignUp : AppCompatActivity() {
                                 .document(userId)
                                 .set(userData)
                                 .addOnSuccessListener {
-                                    Toast.makeText(this, "Usuario registrado correctamente, verifica tu correo electrónico", Toast.LENGTH_LONG).show()
-                                    goToActivityHome()
+                                    // Guardar el estado de inicio de sesión en SharedPreferences
+                                    val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+                                    val editor = sharedPreferences.edit()
+                                    editor.putBoolean("is_logged_in", true)
+                                    editor.apply()
+
+                                    showVerificationDialog()
+                                    //goToActivityHome() // Llamada para ir a la pantalla principal
                                 }
                                 .addOnFailureListener {
                                     Toast.makeText(this, "Error al guardar la información del usuario", Toast.LENGTH_LONG).show()
@@ -149,6 +157,24 @@ class Activity_SignUp : AppCompatActivity() {
                     Toast.makeText(this, "Error al registrar el usuario", Toast.LENGTH_LONG).show()
                 }
             }
+    }
+
+    private fun showVerificationDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Verificación de Correo")
+        builder.setMessage("Usuario registrado correctamente. Por favor, verifica tu correo electrónico para continuar.")
+
+        // Botón "Aceptar" que cierra el diálogo
+        builder.setPositiveButton("Aceptar") { dialog, _ ->
+            dialog.dismiss()  // Cierra el diálogo
+
+            // Llamada a la función que redirige a la actividad principal
+            goToActivityHome()
+        }
+
+        // Crear y mostrar el diálogo
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
     }
 
 }
