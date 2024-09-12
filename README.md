@@ -1,7 +1,3 @@
-Aquí tienes un README en inglés para tu proyecto **BusMapSv**:
-
----
-
 # BusMapSv
 
 ## Description
