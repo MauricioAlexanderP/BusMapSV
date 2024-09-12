@@ -35,6 +35,3 @@ BusMapSv is a mobile application designed to provide real-time bus route informa
 * **Social features:** Enable users to share their experiences, ask questions, and connect with other commuters.
 * **Integration with other transportation modes:** Expand the app to include information about other modes of transportation, such as taxis or ride-sharing services.
 
-
-
-By following these guidelines, you can create a comprehensive and user-friendly bus route app for Santa Ana.
