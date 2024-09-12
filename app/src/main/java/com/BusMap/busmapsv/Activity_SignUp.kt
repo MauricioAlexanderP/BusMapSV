@@ -1,7 +1,9 @@
 package com.BusMap.busmapsv
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -9,13 +11,24 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.regex.Pattern
 
+
 class Activity_SignUp : AppCompatActivity() {
+
+    private lateinit var googleSignInClient: GoogleSignInClient
+    private val RC_SIGN_IN = 9001
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -26,7 +39,65 @@ class Activity_SignUp : AppCompatActivity() {
             insets
         }
 
+        // Configura Google Sign-In
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))  // Obtén esto desde Firebase Console
+            .requestEmail()
+            .build()
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        //Configura el botón de inicio de sesión con Google
+        val googleSignUpButton = findViewById<Button>(R.id.btnGoogleSignUp)
+
+        //al hacer clic en el botón de inicio de sesión con Google, inicia el proceso de inicio de sesión con Google
+        googleSignUpButton.setOnClickListener {
+            signInWithGoogle()
+        }
+
         authUser()
+    }
+    // Iniciar el flujo de inicio de sesión con Google
+    private fun signInWithGoogle() {
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+    // Capturar el resultado del inicio de sesión
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                firebaseAuthWithGoogle(account.idToken!!)
+            } catch (e: ApiException) {
+                Log.w("SignInActivity", "Google sign in failed", e)
+                Toast.makeText(this, "Error en el inicio de sesión con Google", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    // Autenticación en Firebase con el token de Google
+    private fun firebaseAuthWithGoogle(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        FirebaseAuth.getInstance().signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Inicio de sesión exitoso
+                    val user = FirebaseAuth.getInstance().currentUser
+                    updateUI(user)
+                } else {
+                    Toast.makeText(this, "Error de autenticación con Google", Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+    // Actualizar la interfaz del usuario después del inicio de sesión
+    private fun updateUI(user: FirebaseUser?) {
+        user?.let {
+            Toast.makeText(this, "Bienvenido ${user.displayName}", Toast.LENGTH_SHORT).show()
+            // Redirigir a la actividad principal
+            goToActivityHome()
+        }
     }
 
     private fun authUser() {
@@ -127,7 +198,7 @@ class Activity_SignUp : AppCompatActivity() {
                             val userData = hashMapOf(
                                 "name" to name,
                                 "email" to email,
-                                "password" to password // Puedes considerar no almacenar la contraseña en texto plano
+                                "password" to password // Es recomendable no almacenar la contraseña en texto plano
                             )
 
                             // Guardar la información del usuario en la colección "users"
@@ -135,8 +206,8 @@ class Activity_SignUp : AppCompatActivity() {
                                 .document(userId)
                                 .set(userData)
                                 .addOnSuccessListener {
-                                    Toast.makeText(this, "Usuario registrado correctamente, verifica tu correo electrónico", Toast.LENGTH_LONG).show()
-                                    goToActivityHome()
+                                    // Mostrar el AlertDialog en lugar del Toast
+                                    showVerificationDialog()
                                 }
                                 .addOnFailureListener {
                                     Toast.makeText(this, "Error al guardar la información del usuario", Toast.LENGTH_LONG).show()
@@ -149,6 +220,24 @@ class Activity_SignUp : AppCompatActivity() {
                     Toast.makeText(this, "Error al registrar el usuario", Toast.LENGTH_LONG).show()
                 }
             }
+    }
+
+    private fun showVerificationDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Verificación de Correo")
+        builder.setMessage("Usuario registrado correctamente. Por favor, verifica tu correo electrónico para continuar.")
+
+        // Botón "Aceptar" que cierra el diálogo
+        builder.setPositiveButton("Aceptar") { dialog, _ ->
+            dialog.dismiss()  // Cierra el diálogo
+
+            // Llamada a la función que redirige a la actividad principal
+            goToActivityHome()
+        }
+
+        // Crear y mostrar el diálogo
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
     }
 
 }
