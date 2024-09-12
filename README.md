@@ -56,15 +56,4 @@ If you would like to contribute to the project, please follow these steps:
 3. Commit your changes with clear messages.
 4. Push your changes to your forked repository.
 5. Submit a pull request with a detailed description of your changes.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-For any questions or inquiries, please contact [your.email@example.com](mailto:your.email@example.com).
-
 ---
-
-Feel free to adjust any details or add additional information as needed!
