@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -173,6 +174,7 @@ class Activity_SignUp : AppCompatActivity() {
     private fun goToActivityHome() {
         val intent = Intent(this, Activity_home::class.java)
         startActivity(intent)
+        finish()
     }
 
     private fun addUsers() {
@@ -198,7 +200,7 @@ class Activity_SignUp : AppCompatActivity() {
                             val userData = hashMapOf(
                                 "name" to name,
                                 "email" to email,
-                                "password" to password // Es recomendable no almacenar la contraseña en texto plano
+                                "password" to password // Considera no almacenar la contraseña en texto plano
                             )
 
                             // Guardar la información del usuario en la colección "users"
@@ -206,8 +208,17 @@ class Activity_SignUp : AppCompatActivity() {
                                 .document(userId)
                                 .set(userData)
                                 .addOnSuccessListener {
-                                    // Mostrar el AlertDialog en lugar del Toast
+
+                                    // Guardar el estado de inicio de sesión en SharedPreferences
+                                    val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+                                    val editor = sharedPreferences.edit()
+                                    editor.putBoolean("is_logged_in", true)
+                                    editor.apply()
+
                                     showVerificationDialog()
+                                    //goToActivityHome() // Llamada para ir a la pantalla principal
+
+
                                 }
                                 .addOnFailureListener {
                                     Toast.makeText(this, "Error al guardar la información del usuario", Toast.LENGTH_LONG).show()
