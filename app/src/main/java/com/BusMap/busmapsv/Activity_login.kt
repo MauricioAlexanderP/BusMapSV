@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -106,6 +107,12 @@ class Activity_login : AppCompatActivity() {
                     // Verificar si el usuario ha validado su correo
                     if (user != null && user.isEmailVerified) {
                         Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_LONG).show()
+                        // Guardar el estado de inicio de sesión en SharedPreferences
+                        val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+                        val editor = sharedPreferences.edit()
+                        editor.putBoolean("is_logged_in", true)
+                        editor.apply()
+
                         goToActivityHome()
                     } else {
                         Toast.makeText(this, "Por favor, verifica tu correo electrónico", Toast.LENGTH_LONG).show()
@@ -116,6 +123,7 @@ class Activity_login : AppCompatActivity() {
                 }
             }
     }
+
 
     private fun goToActivityHome() {
         val intent = Intent(this, Activity_home::class.java)

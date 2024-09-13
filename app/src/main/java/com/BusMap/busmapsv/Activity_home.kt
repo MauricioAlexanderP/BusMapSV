@@ -40,7 +40,7 @@ class Activity_home : AppCompatActivity() {
         // Asignar el evento de clic al botón
         loadButton.setOnClickListener {
             // Cargar la URL en el WebView
-            webView.loadUrl("https://www.google.com/maps/d/embed?mid=1tX4_yRIeruJdcHRCpgYNh3pjhSZfWto&ehbc=2E312F&ll=13.975239346316705%2C-89.65379185157471&z=14")
+            webView.loadUrl("https://api.mapbox.com/styles/v1/busmap/cm0zeyfjq00ep01nqfhkwh8go/draft.html?title=view&access_token=pk.eyJ1IjoiYnVzbWFwIiwiYSI6ImNtMHplc3o0eDA1a2QyaXE4cW94c3V6MW4ifQ.pSxWCGCbp0h3_41MUGNiYw&zoomwheel=true&fresh=true#8.58/13.725/-88.8391")
         }
     }
 }

@@ -4,6 +4,10 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
-
+    <style name="SplashTheme" parent="Base.Theme.BusMapSV">
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     <style name="Theme.BusMapSV" parent="Base.Theme.BusMapSV" />
 </resources>
