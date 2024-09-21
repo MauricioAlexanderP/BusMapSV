@@ -86,7 +86,7 @@
         android:text="O"
         android:textAlignment="center"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/btnRegistrarse"
+        app:layout_constraintBottom_toTopOf="@+id/btnRegistrarte"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/guideline"
