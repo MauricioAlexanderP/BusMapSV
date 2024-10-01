@@ -39,6 +39,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    viewBinding {
+        enable = true
+    }
 }
 
 dependencies {
@@ -48,10 +51,14 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
     implementation(platform("com.google.firebase:firebase-bom:33.2.0"))
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation ("com.google.android.gms:play-services-auth:20.7.0")
+    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.firebaseui:firebase-ui-firestore:8.0.0")
+    implementation("com.squareup.picasso:picasso:2.71828")
 
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.firebase.database.ktx)

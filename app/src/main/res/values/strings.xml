@@ -2,4 +2,5 @@
     <string name="app_name">BusMapSV</string>
     <string name="prefs_file">BusMapSV_prefs"</string>
     <string name="default_web_client_id">693700987504-072879bm0140ihk22th40e43gga8a3qi.apps.googleusercontent.com</string>
+    <string name="buscar">Buscar</string>
 </resources>
