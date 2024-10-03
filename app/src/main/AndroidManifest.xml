@@ -18,9 +18,6 @@
             android:name=".RouteDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".direccion_item"
-            android:exported="false" />
-        <activity
             android:name=".Activity_home"
             android:exported="false" />
         <activity
