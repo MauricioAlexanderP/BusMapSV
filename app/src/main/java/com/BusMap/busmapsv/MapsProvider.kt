@@ -8,8 +8,10 @@ class MapsProvider {
                 "La ruta 18 inicia en San Sebastian Salitrillo, finaliza en Chalchuapa",
                 "$0.25",
                 "10 minutos",
-                "https://www.google.com/maps/d/embed?mid=1tX4_yRIeruJdcHRCpgYNh3pjhSZfWto&hl=es&ehbc=2E312F&ll=13.976075195728075%2C-89.65740416040813&z=15",
-                "Ruta 51D, San Sebastian Salitrillo"
+                "https://www.google.com/maps/d/embed?mid=1tX4_yRIeruJdcHRCpgYNh3pjhSZfWto&ehbc=2E312F",
+                "Ruta 51D, San Sebastian Salitrillo",
+                "San Sebastian Salitrillo",
+                "Chalchuapa"
 
             ),
             Mapas(
@@ -18,7 +20,9 @@ class MapsProvider {
                 "Gratis",
                 "10 minutos",
                 "https://github.com/MauricioAlexanderP",
-                "Ruta 12, Chalchuapa"
+                "Ruta 12, Chalchuapa",
+                "San Sebastian Salitrillo",
+                "San Sebastian Salitrillo"
             ),
             Mapas(
                 "Ruta 13",
@@ -26,7 +30,9 @@ class MapsProvider {
                 "Gratis",
                 "10 minutos",
                 "https://www.google.com/maps/d/u/0/viewer?mid=1Z6Z9Q1",
-                "Ruta 13,UES, nacional"
+                "Ruta 13,UES, nacional",
+                "San Sebastian Salitrillo",
+                "Chalchuapa"
             ),
             Mapas(
                 "Ruta 14",
@@ -34,7 +40,9 @@ class MapsProvider {
                 "Gratis",
                 "10 minutos",
                 "https://www.google.com/maps/d/u/0/viewer?mid=1Z6Z9Q1",
-                "Ruta 14,metrocentro, centro"
+                "Ruta 14,metrocentro, centro",
+                "San Sebastian Salitrillo",
+                "Chalchuapa"
             ),
             Mapas(
                 "Ruta 15",
@@ -42,7 +50,9 @@ class MapsProvider {
                 "Gratis",
                 "10 minutos",
                 "https://www.google.com/maps/d/u/0/viewer?mid=1Z6Z9Q1",
-                "Ruta 15, catedral, parque central"
+                "Ruta 15, catedral, parque central",
+                " Salitrillo",
+                "Chalchuapa"
             ),
             Mapas(
                 "Ruta 16",
@@ -50,7 +60,19 @@ class MapsProvider {
                 "Gratis",
                 "10 minutos",
                 "https://www.google.com/maps/d/u/0/viewer?mid=1Z6Z9Q1",
-                "Ruta 16, San Sebastian Salitrillo, Chalchuapa"
+                "Ruta 16, San Sebastian Salitrillo, Chalchuapa",
+                "San Sebastian Salitrillo",
+                "Chalchuapa"
+            ),
+            Mapas(
+                "Ruta 16",
+                "Mapa de rutas de buses",
+                "Gratis",
+                "10 minutos",
+                "https://www.google.com/maps/d/u/0/viewer?mid=1Z6Z9Q1",
+                "Ruta 16, San Sebastian Salitrillo, Chalchuapa",
+                "San Sebastian Salitrillo",
+                "Chalchuapa"
             ),
 
             )

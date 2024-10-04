@@ -6,5 +6,7 @@ data class Mapas(
     val fee: String,
     val timeTravel: String,
     val url: String,
-    val keywords: String
+    val keywords: String,
+    var start: String,
+    var end: String
 )

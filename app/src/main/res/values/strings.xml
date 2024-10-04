@@ -3,4 +3,10 @@
     <string name="prefs_file">BusMapSV_prefs"</string>
     <string name="default_web_client_id">693700987504-072879bm0140ihk22th40e43gga8a3qi.apps.googleusercontent.com</string>
     <string name="buscar">Buscar</string>
+    <string name="description">Description</string>
+    <string name="tarifa">Tarifa</string>
+    <string name="tiempo">Tiempo</string>
+    <string name="route_name">Route Name</string>
+    <string name="location_icon" />
+    <string name="money_icon" />
 </resources>

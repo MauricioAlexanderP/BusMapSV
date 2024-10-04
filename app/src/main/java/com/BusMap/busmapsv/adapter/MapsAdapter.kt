@@ -1,5 +1,6 @@
 package com.BusMap.busmapsv.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +25,7 @@ class MapsAdapter(private var mapsList: List<Mapas>, private val onClickListener
         holder.render(item, onClickListener)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updataMaps(mapsList: List<Mapas>) {
         this.mapsList = mapsList
         notifyDataSetChanged()
