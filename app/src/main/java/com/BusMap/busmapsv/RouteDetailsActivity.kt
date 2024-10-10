@@ -2,6 +2,7 @@ package com.BusMap.busmapsv
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.TextView
@@ -20,6 +21,9 @@ class RouteDetailsActivity : AppCompatActivity() {
         val fee = intent.getStringExtra("fee")
         val timeTravel = intent.getStringExtra("timeTravel")
         val url = intent.getStringExtra("url")
+        val inicio = intent.getStringExtra("start")
+        val fin = intent.getStringExtra("end")
+        Log.d("IntentValues", "start: $inicio, end: $fin")
 
         // Asignar los datos a las vistas
         val nameTextView = findViewById<TextView>(R.id.routeName)
@@ -27,14 +31,18 @@ class RouteDetailsActivity : AppCompatActivity() {
         val tarifaTextView = findViewById<TextView>(R.id.routeTarifa)
         val timeTravelTextView = findViewById<TextView>(R.id.routeTime)
         val urlView = findViewById<WebView>(R.id.urlMap)
+        val startTextView = findViewById<TextView>(R.id.textStart)
+        val endTextView = findViewById<TextView>(R.id.textEnd)
 
         nameTextView.text = name
         descriptionTextView.text = description
         tarifaTextView.text = fee
         timeTravelTextView.text = timeTravel
-        val sitigns = urlView.settings
+        startTextView.text = inicio
+        endTextView.text = fin
+        val settings = urlView.settings
 
-        sitigns.javaScriptEnabled = true
+        settings.javaScriptEnabled = true
         if (url != null) {
             urlView.webViewClient = WebViewClient()
             urlView.loadUrl(url)

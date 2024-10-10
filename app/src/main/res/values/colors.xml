@@ -5,4 +5,5 @@
     <color name="blue">#2400FF</color>
     <color name="orange">#FF0000</color>
     <color name="gray">#F6F5F5</color>
+    <color name="dark_gray">#DDDDDD</color>
 </resources>

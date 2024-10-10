@@ -68,7 +68,10 @@ class Activity_home : AppCompatActivity() {
         intent.putExtra("fee", mapas.fee)
         intent.putExtra("timeTravel", mapas.timeTravel)
         intent.putExtra("url", mapas.url)
+        intent.putExtra("start", mapas.start)
+        intent.putExtra("end", mapas.end)
 
+        
         // Iniciar la nueva Activity
         startActivity(intent)
     }

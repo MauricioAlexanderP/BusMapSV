@@ -13,8 +13,8 @@ class MapsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val description = view.findViewById<TextView>(R.id.tvDescription)
     val fee = view.findViewById<TextView>(R.id.tvFee)
     val timeTravel = view.findViewById<TextView>(R.id.tvTimeTravel)
-    var end = view.findViewById<TextView>(R.id.txtEnd)
-    var start = view.findViewById<TextView>(R.id.txtStart)
+    var end = view.findViewById<TextView>(R.id.textEnd)
+    var start = view.findViewById<TextView>(R.id.textStart)
 
     //val url = view.findViewById<WebView>(R.id.ivMap)
     fun render(mapas: Mapas, onClickListener: (Mapas) -> Unit) {
