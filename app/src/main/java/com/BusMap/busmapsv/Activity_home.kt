@@ -18,13 +18,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.BusMap.busmapsv.adapter.MapsAdapter
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 
 
 class Activity_home : AppCompatActivity() {
 
     private var mapsMutableList: MutableList<Mapas> = MapsProvider.mapsList.toMutableList()
     private var adapter: MapsAdapter? = null
-
+    private var count = 0
+    private var interstitial: InterstitialAd? = null
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,12 +51,27 @@ class Activity_home : AppCompatActivity() {
         //Guardar datos
         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
         initLoadAds()
+        initAds()
     }
 
     private fun initLoadAds() {
         val adRequest = AdRequest.Builder().build()
         val adView = findViewById<AdView>(R.id.bannerAd)
         adView.loadAd(adRequest)
+    }
+
+    private fun initAds() {
+        val adRequest = AdRequest.Builder().build()
+        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", adRequest, object :
+            InterstitialAdLoadCallback() {
+            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                interstitial = interstitialAd
+            }
+
+            override fun onAdFailedToLoad(p0: LoadAdError) {
+                interstitial = null
+            }
+        })
     }
 
     fun initRecyclerView() {
@@ -80,9 +99,22 @@ class Activity_home : AppCompatActivity() {
         intent.putExtra("start", mapas.start)
         intent.putExtra("end", mapas.end)
 
-        
+        count += 1
+        checkCounter()
         // Iniciar la nueva Activity
         startActivity(intent)
+    }
+
+    private fun checkCounter() {
+        if (count == 1) {
+            showAds()
+            count = 0
+            initAds()
+        }
+    }
+
+    fun showAds() {
+        interstitial?.show(this)
     }
 
     // Clase que crea un espaciado entre los elementos del RecyclerView
