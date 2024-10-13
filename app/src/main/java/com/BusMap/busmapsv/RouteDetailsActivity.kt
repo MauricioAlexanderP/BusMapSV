@@ -7,6 +7,8 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 
 class RouteDetailsActivity : AppCompatActivity() {
 
@@ -47,6 +49,12 @@ class RouteDetailsActivity : AppCompatActivity() {
             urlView.webViewClient = WebViewClient()
             urlView.loadUrl(url)
         }
+        initLoadAds()
+    }
 
+    private fun initLoadAds() {
+        val adRequest = AdRequest.Builder().build()
+        val adView = findViewById<AdView>(R.id.bannerAd)
+        adView.loadAd(adRequest)
     }
 }

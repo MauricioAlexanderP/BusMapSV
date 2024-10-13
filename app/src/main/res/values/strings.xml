@@ -9,4 +9,7 @@
     <string name="route_name">Route Name</string>
     <string name="location_icon" />
     <string name="money_icon" />
+    <string name="inicio">Inicio</string>
+    <string name="textview">TextView</string>
+    <string name="fin">Fin</string>
 </resources>

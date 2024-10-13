@@ -6,10 +6,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import com.google.firebase.auth.FirebaseAuth
 
 class Activity_login : AppCompatActivity() {
@@ -26,7 +27,15 @@ class Activity_login : AppCompatActivity() {
         btnSignUp.setOnClickListener {
            loginUser()
         }
+        initLoadAds()
     }
+
+    private fun initLoadAds() {
+        val adRequest = AdRequest.Builder().build()
+        val adView = findViewById<AdView>(R.id.bannerAd)
+        adView.loadAd(adRequest)
+    }
+
     private fun loginUser() {
         val txtEmail = findViewById<EditText>(R.id.txtEmail)
         val txtPassword = findViewById<EditText>(R.id.txtPassword)
