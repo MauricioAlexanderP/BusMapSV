@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.BusMap.busmapsv.adapter.MapsAdapter
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 
 
 class Activity_home : AppCompatActivity() {
@@ -44,6 +46,13 @@ class Activity_home : AppCompatActivity() {
         initRecyclerView()
         //Guardar datos
         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
+        initLoadAds()
+    }
+
+    private fun initLoadAds() {
+        val adRequest = AdRequest.Builder().build()
+        val adView = findViewById<AdView>(R.id.bannerAd)
+        adView.loadAd(adRequest)
     }
 
     fun initRecyclerView() {
