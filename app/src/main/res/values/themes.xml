@@ -1,13 +1,23 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.BusMapSV" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
+
     <style name="SplashTheme" parent="Base.Theme.BusMapSV">
         <item name="android:windowBackground">@drawable/splash</item>
     </style>
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    <!-- Customize your dark theme here. -->
+    <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     <style name="Theme.BusMapSV" parent="Base.Theme.BusMapSV" />
+
+    <style name="Theme.BusMapSV.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.BusMapSV.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.BusMapSV.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

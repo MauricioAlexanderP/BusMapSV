@@ -10,9 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.regex.Pattern
 
@@ -101,7 +99,7 @@ class Activity_SignUp : AppCompatActivity() {
     }
 
     private fun goToActivityHome() {
-        val intent = Intent(this, Activity_home::class.java)
+        val intent = Intent(this, FirstActivity::class.java)
         startActivity(intent)
         finish()
     }
