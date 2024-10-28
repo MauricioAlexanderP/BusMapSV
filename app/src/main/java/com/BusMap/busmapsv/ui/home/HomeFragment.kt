@@ -4,11 +4,11 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
@@ -20,6 +20,7 @@ import com.BusMap.busmapsv.Mapas
 import com.BusMap.busmapsv.MapsProvider
 import com.BusMap.busmapsv.R
 import com.BusMap.busmapsv.RouteDetailsActivity
+import com.BusMap.busmapsv.RouteDetailsActivityPremium
 import com.BusMap.busmapsv.adapter.MapsAdapter
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
@@ -33,6 +34,7 @@ class HomeFragment : Fragment() {
     private var adapter: MapsAdapter? = null
     private var count = 0
     private var interstitial: InterstitialAd? = null
+    private var isPremium = true
 
     @SuppressLint("SetJavaScriptEnabled", "MissingInflatedId")
     override fun onCreateView(
@@ -67,13 +69,6 @@ class HomeFragment : Fragment() {
         initAds()
 
         return view
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        // Cambiar el título del toolbar
-        (activity as? AppCompatActivity)?.supportActionBar?.title = "Inicio"
     }
 
     private fun initLoadAds(view: View) {
@@ -115,22 +110,36 @@ class HomeFragment : Fragment() {
     private fun onItenClick(mapas: Mapas) {
         // Navegar a otra activity o fragmento con los datos del objeto 'mapas'
         val intent = Intent(requireContext(), RouteDetailsActivity::class.java)
+        val intentPremium = Intent(requireContext(), RouteDetailsActivityPremium::class.java)
 
-        intent.putExtra("name", mapas.name)
-        intent.putExtra("description", mapas.description)
-        intent.putExtra("fee", mapas.fee)
-        intent.putExtra("timeTravel", mapas.timeTravel)
-        intent.putExtra("url", mapas.url)
-        intent.putExtra("start", mapas.start)
-        intent.putExtra("end", mapas.end)
+        if (isPremium) {
+            intentPremium.putExtra("name", mapas.name)
+            intentPremium.putExtra("description", mapas.description)
+            intentPremium.putExtra("fee", mapas.fee)
+            intentPremium.putExtra("timeTravel", mapas.timeTravel)
+            //intent2.putExtra("url", mapas.url)
+            intentPremium.putExtra("start", mapas.start)
+            intentPremium.putExtra("end", mapas.end)
+            intentPremium.putParcelableArrayListExtra("route", ArrayList(mapas.route))
+            // Iniciar la nueva Activity
+            startActivity(intentPremium)
+        } else {
+            intent.putExtra("name", mapas.name)
+            intent.putExtra("description", mapas.description)
+            intent.putExtra("fee", mapas.fee)
+            intent.putExtra("timeTravel", mapas.timeTravel)
+            intent.putExtra("url", mapas.url)
+            intent.putExtra("start", mapas.start)
+            intent.putExtra("end", mapas.end)
+            //intent.putParcelableArrayListExtra("route", ArrayList(mapas.route))
+            // Iniciar la nueva Activity
+            startActivity(intent)
+        }
+        Log.d("IntentValues", "rute: ${mapas.route}")
 
         count += 1
         checkCounter()
-
-        // Iniciar la nueva Activity
-        startActivity(intent)
     }
-
     private fun checkCounter() {
         if (count == 1) {
             showAds()

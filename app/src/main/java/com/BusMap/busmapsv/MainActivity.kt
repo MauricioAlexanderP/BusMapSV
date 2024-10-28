@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
     private fun goToActivityHome() {
-        val intent = Intent(this, Activity_home::class.java)
+        val intent = Intent(this, FirstActivity::class.java)
         startActivity(intent)
     }
 }

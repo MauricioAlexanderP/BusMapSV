@@ -8,5 +8,6 @@ data class Mapas(
     val url: String,
     val keywords: String,
     var start: String,
-    var end: String
+    var end: String,
+    val route: List<com.google.android.gms.maps.model.LatLng>
 )

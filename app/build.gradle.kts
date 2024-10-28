@@ -60,6 +60,8 @@ dependencies {
     implementation("com.firebaseui:firebase-ui-firestore:8.0.0")
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation("com.google.android.gms:play-services-ads:23.3.0")
+    implementation("com.google.android.gms:play-services-location:21.0.0")
+    implementation("com.google.guava:guava:31.0.1-android")
 
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.firebase.database.ktx)
@@ -67,6 +69,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.play.services.maps)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

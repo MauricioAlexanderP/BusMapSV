@@ -25,7 +25,6 @@ class RouteDetailsActivity : AppCompatActivity() {
         val url = intent.getStringExtra("url")
         val inicio = intent.getStringExtra("start")
         val fin = intent.getStringExtra("end")
-        Log.d("IntentValues", "start: $inicio, end: $fin")
 
         // Asignar los datos a las vistas
         val nameTextView = findViewById<TextView>(R.id.routeName)
@@ -35,7 +34,6 @@ class RouteDetailsActivity : AppCompatActivity() {
         val urlView = findViewById<WebView>(R.id.urlMap)
         val startTextView = findViewById<TextView>(R.id.textStart)
         val endTextView = findViewById<TextView>(R.id.textEnd)
-
         nameTextView.text = name
         descriptionTextView.text = description
         tarifaTextView.text = fee
@@ -50,6 +48,7 @@ class RouteDetailsActivity : AppCompatActivity() {
             urlView.loadUrl(url)
         }
         initLoadAds()
+        Log.d("IntentValues", "rute: ${url}")
     }
 
     private fun initLoadAds() {
