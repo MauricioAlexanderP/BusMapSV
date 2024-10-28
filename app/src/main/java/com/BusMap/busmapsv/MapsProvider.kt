@@ -1,5 +1,7 @@
 package com.BusMap.busmapsv
 
+import com.google.android.gms.maps.model.LatLng
+
 class MapsProvider {
     companion object {
         val mapsList = listOf<Mapas>(
@@ -11,7 +13,10 @@ class MapsProvider {
                 "https://www.google.com/maps/d/embed?mid=1tX4_yRIeruJdcHRCpgYNh3pjhSZfWto&ehbc=2E312F",
                 "Ruta 51D, San Sebastian Salitrillo",
                 "San Sebastian Salitrillo",
-                "Chalchuapa"
+                "Chalchuapa",
+                listOf(
+                    LatLng(13.9946, -89.5593),  // Puntos de la ruta
+                )
 
             ),
             Mapas(
@@ -22,7 +27,10 @@ class MapsProvider {
                 "https://github.com/MauricioAlexanderP",
                 "Ruta 12, Chalchuapa",
                 "San Sebastian Salitrillo",
-                "San Sebastian Salitrillo"
+                "San Sebastian Salitrillo",
+                listOf(
+                    LatLng(13.9946, -89.5593),  // Puntos de la ruta
+                )
             ),
             Mapas(
                 "Ruta 13",
@@ -32,7 +40,10 @@ class MapsProvider {
                 "https://www.google.com/maps/d/u/0/viewer?mid=1Z6Z9Q1",
                 "Ruta 13,UES, nacional",
                 "San Sebastian Salitrillo",
-                "Chalchuapa"
+                "Chalchuapa",
+                listOf(
+                    LatLng(13.9946, -89.5593),  // Puntos de la ruta
+                )
             ),
             Mapas(
                 "Ruta 14",
@@ -42,7 +53,10 @@ class MapsProvider {
                 "https://www.google.com/maps/d/u/0/viewer?mid=1Z6Z9Q1",
                 "Ruta 14,metrocentro, centro",
                 "San Sebastian Salitrillo",
-                "Chalchuapa"
+                "Chalchuapa",
+                listOf(
+                    LatLng(13.9946, -89.5593),  // Puntos de la ruta
+                )
             ),
             Mapas(
                 "Ruta 15",
@@ -52,7 +66,10 @@ class MapsProvider {
                 "https://www.google.com/maps/d/u/0/viewer?mid=1Z6Z9Q1",
                 "Ruta 15, catedral, parque central",
                 " Salitrillo",
-                "Chalchuapa"
+                "Chalchuapa",
+                listOf(
+                    LatLng(13.9946, -89.5593),  // Puntos de la ruta
+                )
             ),
             Mapas(
                 "Ruta 16",
@@ -62,7 +79,10 @@ class MapsProvider {
                 "https://www.google.com/maps/d/u/0/viewer?mid=1Z6Z9Q1",
                 "Ruta 16, San Sebastian Salitrillo, Chalchuapa",
                 "San Sebastian Salitrillo",
-                "Chalchuapa"
+                "Chalchuapa",
+                listOf(
+                    LatLng(13.9946, -89.5593),  // Puntos de la ruta
+                )
             ),
             Mapas(
                 "Ruta 16",
@@ -72,10 +92,11 @@ class MapsProvider {
                 "https://www.google.com/maps/d/u/0/viewer?mid=1Z6Z9Q1",
                 "Ruta 16, San Sebastian Salitrillo, Chalchuapa",
                 "San Sebastian Salitrillo",
-                "Chalchuapa"
+                "Chalchuapa",
+                listOf(
+                    LatLng(13.9946, -89.5593),  // Puntos de la ruta
+                )
             ),
-
-            )
-
+        )
     }
 }
